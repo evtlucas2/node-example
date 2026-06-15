@@ -1,7 +1,7 @@
 import bazinga, { Application, Request, Response } from "express";
 import database from "./infra/db";
 import NewsController from "./controller/newsController";
-import VideosController from "./controller/videoController";
+import VideoController from "./controller/videoController";
 import GaleriaController from "./controller/galeriaController";
 
 class StartUp {
@@ -29,11 +29,11 @@ class StartUp {
 		});
 
 		this.app.route("/api/v1/videos/:page/:qtd").get((req: Request, res: Response) => {
-			return VideosController.get(req, res)
+			return VideoController.get(req, res)
 		});
 
 		this.app.route("/api/v1/videos/:id").get((req: Request, res: Response) => {
-			return VideosController.getById(req, res);
+			return VideoController.getById(req, res);
 		});
 
 		this.app.route("/api/v1/galeria/:page/:qtd").get((req: Request, res: Response) => {

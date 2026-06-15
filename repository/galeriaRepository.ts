@@ -6,7 +6,7 @@ const GaleriaSchema = new mongoose.Schema<Galeria>({
 	titulo: { String },
 	texto: { String },
 	dataPublicacao: { Date },
-	fotos: [Array<Fotos>()],
+	fotos: [ Array<Fotos>() ],
 	ativo: { Boolean }
 });
 

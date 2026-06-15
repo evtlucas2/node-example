@@ -37,6 +37,7 @@ class GaleriaController {
             try {
                 const _id = request.params.id;
                 let result = yield this._service.get(_id.toString());
+                response.status(200).json({ result });
             }
             catch (error) {
                 if (error instanceof Error) {
