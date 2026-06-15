@@ -16,7 +16,9 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
-    "incremental": true
+    "incremental": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
