@@ -6,10 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GaleriaRepository = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const GaleriaSchema = new mongoose_1.default.Schema({
-    titulo: { String },
-    texto: { String },
-    dataPublicacao: { Date },
+    titulo: { type: String },
+    texto: { type: String },
+    dataPublicacao: { type: Date },
     fotos: [Array()],
-    ativo: { Boolean }
+    ativo: { type: Boolean }
 });
-exports.GaleriaRepository = mongoose_1.default.model("galeria", GaleriaSchema);
+exports.GaleriaRepository = mongoose_1.default.model("galeria", GaleriaSchema, "galeria");
+//export const VideosRepository = mongoose.model<Videos>("videos", VideosSchema);

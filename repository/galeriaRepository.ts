@@ -3,11 +3,12 @@ import { Fotos } from "../models/fotos";
 import { Galeria } from "../models/galeria";
 
 const GaleriaSchema = new mongoose.Schema<Galeria>({
-	titulo: { String },
-	texto: { String },
-	dataPublicacao: { Date },
+	titulo: { type: String },
+	texto: { type: String },
+	dataPublicacao: { type: Date },
 	fotos: [ Array<Fotos>() ],
-	ativo: { Boolean }
+	ativo: { type: Boolean }
 });
 
-export const GaleriaRepository = mongoose.model<Galeria>("galeria", GaleriaSchema);
+export const GaleriaRepository = mongoose.model<Galeria>("galeria", GaleriaSchema, "galeria");
+//export const VideosRepository = mongoose.model<Videos>("videos", VideosSchema);
