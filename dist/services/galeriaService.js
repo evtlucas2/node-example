@@ -9,15 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NewsService = void 0;
+exports.GaleriaService = void 0;
 const result_1 = require("../infra/result");
-const newsRepository_1 = require("../repository/newsRepository");
-class NewsService {
+const galeriaRepository_1 = require("../repository/galeriaRepository");
+class GaleriaService {
     get(_id) {
         return __awaiter(this, void 0, void 0, function* () {
-            let result = yield newsRepository_1.NewsRepository.findById(_id);
+            let result = yield galeriaRepository_1.GaleriaRepository.findById(_id);
             if (!result)
-                throw new Error(`News com id ${_id} não encontrada`);
+                throw new Error(`Galeria com id ${_id} não encontrada`);
             return result;
         });
     }
@@ -26,10 +26,10 @@ class NewsService {
             let result = new result_1.Result();
             result.Page = page;
             result.Qtd = qtd;
-            result.Total = yield newsRepository_1.NewsRepository.countDocuments();
-            result.Data = yield newsRepository_1.NewsRepository.find({}).skip((page * qtd) - qtd).limit(qtd);
+            result.Total = yield galeriaRepository_1.GaleriaRepository.countDocuments();
+            result.Data = yield galeriaRepository_1.GaleriaRepository.find({}).skip((page * qtd) - qtd).limit(qtd);
             return result;
         });
     }
 }
-exports.NewsService = NewsService;
+exports.GaleriaService = GaleriaService;
