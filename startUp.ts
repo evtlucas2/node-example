@@ -1,26 +1,22 @@
 import "reflect-metadata";
 
-import bazinga, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 
-import { container } from "tsyringe";
 import "./shared/container";
 
 import database from "./infra/db";
-import { NewsController } from "./controller/newsController";
-import { VideoController } from "./controller/videoController";
-import { GaleriaController } from "./controller/galeriaController";
+
+import newsRouter from "./router/newsRouter";
+import galeriaRouter from "./router/galeriaRouter";
+import videoRouter from "./router/videoRouter";
 
 class StartUp {
 	
 	public app: Application;
 	private _db: database = new database();
 
-	private news = container.resolve(NewsController);
-	private video = container.resolve(VideoController);
-	private galeria = container.resolve(GaleriaController);
-
 	constructor() {
-		this.app = bazinga();
+		this.app = express();
 		this._db.createConnection();
 		this.routes();
 	}
@@ -30,29 +26,9 @@ class StartUp {
 			res.send("versão: 0.0.1");
 		});
 
-		this.app.route("/api/v1/news/:page/:qtd").get((req: Request, res: Response) => {
-			return this.news.get(req, res)
-		});
-
-		this.app.route("/api/v1/news/:id").get((req: Request, res: Response) => {
-			return this.news.getById(req, res);
-		});
-
-		this.app.route("/api/v1/videos/:page/:qtd").get((req: Request, res: Response) => {
-			return this.video.get(req, res)
-		});
-
-		this.app.route("/api/v1/videos/:id").get((req: Request, res: Response) => {
-			return this.video.getById(req, res);
-		});
-
-		this.app.route("/api/v1/galeria/:page/:qtd").get((req: Request, res: Response) => {
-			return this.galeria.get(req, res)
-		});
-
-		this.app.route("/api/v1/galeria/:id").get((req: Request, res: Response) => {
-			return this.galeria.getById(req, res);
-		});
+		this.app.use("/", newsRouter);
+		this.app.use("/", galeriaRouter);
+		this.app.use("/", videoRouter);
 	}
 }
 
